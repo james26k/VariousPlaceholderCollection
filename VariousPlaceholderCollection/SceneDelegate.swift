@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = {
             let window = UIWindow(windowScene: windowScene)
-            let rootViewController = UINavigationController(rootViewController: PlaceholderListViewController())
+            let rootViewController = PlaceholderListViewController()
             window.rootViewController = rootViewController
             window.makeKeyAndVisible()
             return window
