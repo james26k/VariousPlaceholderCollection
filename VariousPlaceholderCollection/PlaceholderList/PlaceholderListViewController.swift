@@ -43,7 +43,7 @@ final class PlaceholderListViewController: UIViewController {
 
 extension PlaceholderListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Int.random(in: (5...20))
+        3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

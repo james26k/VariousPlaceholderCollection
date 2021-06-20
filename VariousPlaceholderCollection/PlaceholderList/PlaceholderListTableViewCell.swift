@@ -8,10 +8,10 @@
 import UIKit
 
 final class PlaceholderListTableViewCell: UITableViewCell {
-    static let height: CGFloat = 200
+    static let height: CGFloat = PlaceholderListCollectionViewCell.height
     private var collectionView: UICollectionView!
 
-    private let reuseId = String(describing: UICollectionViewCell.self)
+    private let reuseId = String(describing: PlaceholderListCollectionViewCell.self)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,7 +29,7 @@ final class PlaceholderListTableViewCell: UITableViewCell {
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
             collectionView.backgroundColor = .secondarySystemBackground
             collectionView.dataSource = self
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
+            collectionView.register(PlaceholderListCollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
             contentView.addSubview(collectionView)
             collectionView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
@@ -49,12 +49,12 @@ final class PlaceholderListTableViewCell: UITableViewCell {
 
 extension PlaceholderListTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Int.random(in: (5...20))
+        Int.random(in: (1...5))
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath)
-        cell.backgroundColor = .systemIndigo
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as? PlaceholderListCollectionViewCell
+        else { fatalError() }
         return cell
     }
 }

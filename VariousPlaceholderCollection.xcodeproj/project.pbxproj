@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		55193FB0267F6380000885CB /* PlaceholderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55193FAF267F6380000885CB /* PlaceholderListTableViewCell.swift */; };
+		55193FB2267F6F3C000885CB /* PlaceholderListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55193FB1267F6F3C000885CB /* PlaceholderListCollectionViewCell.swift */; };
 		55E862172678DEB000F8DFA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E862162678DEB000F8DFA9 /* AppDelegate.swift */; };
 		55E862192678DEB000F8DFA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E862182678DEB000F8DFA9 /* SceneDelegate.swift */; };
 		55E8621B2678DEB000F8DFA9 /* PlaceholderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8621A2678DEB000F8DFA9 /* PlaceholderListViewController.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		55193FAF267F6380000885CB /* PlaceholderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderListTableViewCell.swift; sourceTree = "<group>"; };
+		55193FB1267F6F3C000885CB /* PlaceholderListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderListCollectionViewCell.swift; sourceTree = "<group>"; };
 		55E862132678DEB000F8DFA9 /* VariousPlaceholderCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VariousPlaceholderCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E862162678DEB000F8DFA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E862182678DEB000F8DFA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				55E8621A2678DEB000F8DFA9 /* PlaceholderListViewController.swift */,
 				55193FAF267F6380000885CB /* PlaceholderListTableViewCell.swift */,
+				55193FB1267F6F3C000885CB /* PlaceholderListCollectionViewCell.swift */,
 			);
 			path = PlaceholderList;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55E8621B2678DEB000F8DFA9 /* PlaceholderListViewController.swift in Sources */,
+				55193FB2267F6F3C000885CB /* PlaceholderListCollectionViewCell.swift in Sources */,
 				55193FB0267F6380000885CB /* PlaceholderListTableViewCell.swift in Sources */,
 				55E862172678DEB000F8DFA9 /* AppDelegate.swift in Sources */,
 				55E862192678DEB000F8DFA9 /* SceneDelegate.swift in Sources */,
