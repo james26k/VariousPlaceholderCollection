@@ -8,7 +8,6 @@
 import UIKit
 
 final class PlaceholderListViewController: UIViewController {
-    // UI
     private var tableView: UITableView!
 
     private let reuseId = String(describing: PlaceholderListTableViewCell.self)
@@ -19,10 +18,10 @@ final class PlaceholderListViewController: UIViewController {
 
         tableView = {
             let tableView = UITableView()
-            tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(PlaceholderListTableViewCell.self, forCellReuseIdentifier: reuseId)
             tableView.separatorInset = .zero
+            tableView.register(PlaceholderListTableViewCell.self, forCellReuseIdentifier: reuseId)
+            tableView.rowHeight = PlaceholderListTableViewCell.height
             view.addSubview(tableView)
             tableView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
@@ -34,27 +33,16 @@ final class PlaceholderListViewController: UIViewController {
             return tableView
         }()
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 }
-
+// MARK: - UITableViewDataSource
 extension PlaceholderListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as? PlaceholderListTableViewCell
         else { fatalError() }
         return cell
-    }
-}
-
-extension PlaceholderListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        PlaceholderListTableViewCell.height
     }
 }

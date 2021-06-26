@@ -14,12 +14,13 @@ final class PlaceholderListCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
+        // for self-sizing
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
 
         imageView = {
@@ -28,10 +29,10 @@ final class PlaceholderListCollectionViewCell: UICollectionViewCell {
             contentView.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-                imageView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
-                imageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+                imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
             return imageView
         }()
@@ -44,5 +45,32 @@ final class PlaceholderListCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+    }
+
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        super.preferredLayoutAttributesFitting(layoutAttributes)
+        guard let imageSize = imageView.image?.size else { return layoutAttributes }
+        let imageAspectRatio: CGFloat = imageSize.width / imageSize.height
+        layoutAttributes.size = .init(width: Self.height * imageAspectRatio,
+                                      height: Self.height)
+        return layoutAttributes
+    }
+
+    func setupVariousAspectImage() {
+        let imageUrlString = "https://via.placeholder.com/\(Int.random(in: (50...100)))x\(Int.random(in: (50...100)))"
+        imageView.image = UIImage(urlString: imageUrlString)
+    }
+}
+
+private extension UIImage {
+    convenience init?(urlString: String) {
+        guard let url = URL(string: urlString) else { return nil }
+        do {
+            let data = try Data(contentsOf: url)
+            self.init(data: data)
+        }
+        catch {
+            return nil
+        }
     }
 }

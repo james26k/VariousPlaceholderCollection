@@ -18,10 +18,9 @@ final class PlaceholderListTableViewCell: UITableViewCell {
 
         let layout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
-            layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 10
-            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 10
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return layout
         }()
 
@@ -33,8 +32,8 @@ final class PlaceholderListTableViewCell: UITableViewCell {
             contentView.addSubview(collectionView)
             collectionView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                collectionView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-                collectionView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+                collectionView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
                 collectionView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor)
             ])
@@ -46,15 +45,18 @@ final class PlaceholderListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
+// MARK: - UICollectionViewDataSource
 extension PlaceholderListTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Int.random(in: (1...5))
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        4
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as? PlaceholderListCollectionViewCell
         else { fatalError() }
+        cell.setupVariousAspectImage()
         return cell
     }
 }
