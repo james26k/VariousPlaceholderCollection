@@ -56,21 +56,7 @@ final class PlaceholderListCollectionViewCell: UICollectionViewCell {
         return layoutAttributes
     }
 
-    func setupVariousAspectImage() {
-        let imageUrlString = "https://via.placeholder.com/\(Int.random(in: (50...100)))x\(Int.random(in: (50...100)))"
-        imageView.image = UIImage(urlString: imageUrlString)
-    }
-}
-
-private extension UIImage {
-    convenience init?(urlString: String) {
-        guard let url = URL(string: urlString) else { return nil }
-        do {
-            let data = try Data(contentsOf: url)
-            self.init(data: data)
-        }
-        catch {
-            return nil
-        }
+    func setImage(image: UIImage?) {
+        imageView.image = image
     }
 }

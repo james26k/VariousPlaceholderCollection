@@ -12,6 +12,11 @@ final class PlaceholderListTableViewCell: UITableViewCell {
     private var collectionView: UICollectionView!
 
     private let reuseId = String(describing: PlaceholderListCollectionViewCell.self)
+    private var images: [UIImage?] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,19 +49,27 @@ final class PlaceholderListTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func prepareForReuse() {
+        images = [nil]
+    }
+
+    func setup(images: [UIImage?]) {
+        self.images = images
+    }
 }
 // MARK: - UICollectionViewDataSource
 extension PlaceholderListTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        4
+        images.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as? PlaceholderListCollectionViewCell
         else { fatalError() }
-        cell.setupVariousAspectImage()
+        cell.setImage(image: images[indexPath.row])
         return cell
     }
 }
